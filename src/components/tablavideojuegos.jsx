@@ -1,6 +1,10 @@
 import "./tablavideojuegos.css"
+import { useNavigate } from "react-router-dom";
 
-function Videojuegos({ videojuegos }) {
+function Videojuegos({ videojuegos, onEliminar }) {
+
+    const navigate = useNavigate();
+
     return (
         <div className="videojuegos">
             <div className="videojuegos-header">
@@ -18,6 +22,7 @@ function Videojuegos({ videojuegos }) {
                             <th>Precio</th>
                             <th>Disponibilidad</th>
                             <th>Progreso</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
 
@@ -38,6 +43,23 @@ function Videojuegos({ videojuegos }) {
                                         ></progress>
                                         <span>{Math.round(vid.progreso * 100)}%</span>
                                     </div>
+                                </td>
+                                <td>
+                                    <button
+                                        onClick={() =>
+                                            navigate("/editar", {
+                                                state: {
+                                                    videojuego: vid
+                                                }
+                                            })
+                                        }
+                                    >
+                                        Editar
+                                    </button>
+
+                                    <button onClick={() => onEliminar(vid.id)}>
+                                        Eliminar
+                                    </button>
                                 </td>
                             </tr>
 
