@@ -22,6 +22,8 @@ function Videojuegos({ videojuegos, onEliminar }) {
                             <th>Precio</th>
                             <th>Disponibilidad</th>
                             <th>Progreso</th>
+                            <th>Sinopsis</th>
+                            <th>Calificación</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -44,8 +46,11 @@ function Videojuegos({ videojuegos, onEliminar }) {
                                         <span>{Math.round(vid.progreso * 100)}%</span>
                                     </div>
                                 </td>
+                                <td>{vid.sinopsis}</td>
+                                <td>{vid.calificacion}/100</td>
                                 <td>
                                     <button
+                                        className="btn-editar"
                                         onClick={() =>
                                             navigate("/editar", {
                                                 state: {
@@ -57,7 +62,9 @@ function Videojuegos({ videojuegos, onEliminar }) {
                                         Editar
                                     </button>
 
-                                    <button onClick={() => onEliminar(vid.id)}>
+                                    <button 
+                                    className="btn-eliminar"
+                                    onClick={() => onEliminar(vid.id)}>
                                         Eliminar
                                     </button>
                                 </td>

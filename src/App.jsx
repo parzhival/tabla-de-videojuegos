@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
@@ -9,11 +9,25 @@ import Videojuegos from "./components/tablavideojuegos";
 import FormularioVideojuego from "./components/formularioVideojuegos";
 import Navbar from "./components/navBar";
 import PaginaNoEncontrada from "./components/paginaNoEncontrada";
+import AlertaNotificacion from "./components/alertaNotificacion";
 
 
 function App() {
 
-  const [videojuegos, setVideojuegos] = useState(data);
+  const [videojuegos, setVideojuegos] = useState(() => {
+    const datosGuardados = localStorage.getItem("lista_videojuegos");
+
+    return datosGuardados ? JSON.parse(datosGuardados) : data;
+  });
+
+  const [mensaje, setMensaje] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem(
+      "lista_videojuegos",
+      JSON.stringify(videojuegos)
+    );
+  }, [videojuegos]);
 
   const agregar = (videojuego) => {
 
@@ -26,6 +40,8 @@ function App() {
       ...videojuegos,
       nuevoVideojuego
     ]);
+
+    setMensaje("Videojuego agregado correctamente");
   };
 
   const eliminar = (id) => {
@@ -35,6 +51,8 @@ function App() {
     );
 
     setVideojuegos(nuevosVideojuegos);
+
+    setMensaje("Videojuego eliminado correctamente");
   };
 
   const editar = (videojuegoActualizado) => {
@@ -47,6 +65,8 @@ function App() {
     );
 
     setVideojuegos(nuevosVideojuegos);
+
+    setMensaje("Videojuego actualizado correctamente");
   };
 
 
@@ -55,6 +75,9 @@ function App() {
     <BrowserRouter>
 
       <Navbar />
+      {mensaje && (
+        <AlertaNotificacion mensaje={mensaje} />
+      )}
 
       <Routes>
 

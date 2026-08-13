@@ -246,3 +246,89 @@ progress{
 }
 
 }
+
+/* CONTENEDOR DE LOS BOTONES */
+
+.acciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* ESTILO GENERAL DE LOS BOTONES */
+
+.acciones button {
+    border: none;
+    border-radius: 8px;
+
+    padding: 8px 12px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+/* BOTÓN EDITAR */
+
+.btn-editar {
+    background-color: #f59e0b;
+    color: white;
+}
+
+
+.btn-editar:hover {
+    background-color: #d97706;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(245, 158, 11, 0.35);
+}
+
+
+/* BOTÓN ELIMINAR */
+
+.btn-eliminar {
+    background-color: #ef4444;
+    color: white;
+}
+
+
+.btn-eliminar:hover {
+    background-color: #dc2626;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(239, 68, 68, 0.35);
+}
+
+
+/* EFECTO AL PRESIONAR */
+
+.acciones button:active {
+    transform: scale(0.95);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .acciones {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .acciones button {
+        width: 100%;
+        min-width: 90px;
+    }
+
+}
